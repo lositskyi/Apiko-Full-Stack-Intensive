@@ -1,6 +1,6 @@
 const container = document.getElementById('container');
 const getJson = (url) => fetch(url).then(response => response.json());
-const href = window.location;
+let href = window.location;
 
 // Display all posts
 const printAllPosts = ([posts, users]) => {
@@ -9,7 +9,7 @@ const printAllPosts = ([posts, users]) => {
 	ul.style.listStyle = "none";
 	posts.forEach(item => {
 		const li = document.createElement('li');
-		const userName = users.find(x => x.id === item.userId).name;
+		let userName = users.find(x => x.id === item.userId).name;
 
 		li.style.marginBottom = "20px";
 		li.innerHTML = 
@@ -29,7 +29,7 @@ const printAllPosts = ([posts, users]) => {
 		
 //Display one post and comments to it
 const printSinglPost = ([post, users, comments]) => {
-	const userName = users.find(x => x.id === post.userId);
+	let userName = users.find(x => x.id === post.userId);
 	const ul = document.createElement('ul');
 
 	container.innerHTML =
@@ -90,7 +90,7 @@ const printUserPosts = ([user, posts]) => {
 
 //Parse url
 if (/(postId)/.test(href)) {
-	const postId = href.search.match(/[0-9]/g).join('');
+	let postId = href.search.match(/[0-9]/g).join('');
 
 	Promise.all([
 		getJson(`https://jsonplaceholder.typicode.com/posts/${postId}`),
@@ -100,7 +100,7 @@ if (/(postId)/.test(href)) {
 	.then(([post, users, comments]) => printSinglPost([post, users, comments]))
 	.catch(error => console.error(`ERROR ${error}`));
 } else if (/(userId)/.test(href)) {
-	const userId = href.search.match(/[0-9]/g).join('');
+	let userId = href.search.match(/[0-9]/g).join('');
 
 	Promise.all([
 		getJson(`https://jsonplaceholder.typicode.com/users/${userId}`),
