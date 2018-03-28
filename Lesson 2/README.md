@@ -1,1 +1,0 @@
-# Apiko-Full-Stack-Intensive
