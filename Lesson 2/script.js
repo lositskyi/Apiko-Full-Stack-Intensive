@@ -1,4 +1,4 @@
-const React = {
+Tconst React = {
 	createElement (type, props, children) {
 		const element = document.createElement(type);
 
@@ -47,7 +47,7 @@ const React = {
 	  },
 
 	  render(element, parentElement) {
-		parentElement.appendChild(element);
+		parentElement.innerHTML = element.outerHTML;
 	  }
 	}
 
