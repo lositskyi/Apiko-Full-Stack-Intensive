@@ -47,7 +47,7 @@ const React = {
 	  },
 
 	  render(element, parentElement) {
-		parentElement.appendChild(element);
+		parentElement.innerHTML = element.outerHTML;
 	  }
 	}
 
