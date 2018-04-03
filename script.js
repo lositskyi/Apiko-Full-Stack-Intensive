@@ -39,10 +39,11 @@ const React = {
 						});
 					} else {
 						element.appendChild(children);
-					}
+					} 
 					break;
 			}
 		}
+		console.log(element.nodeType)
 		return element;
 	  },
 
