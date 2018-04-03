@@ -43,7 +43,6 @@ const React = {
 					break;
 			}
 		}
-		console.log(element.nodeType)
 		return element;
 	  },
 
