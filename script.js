@@ -1,7 +1,17 @@
+
 const React = {
 	createElement (type, props, children) {
+		//varification argument "type"
+		if (typeof type !== 'string') {
+			throw new Error(`Invalid value of the argument "type" in createElement()! "type" is a ${typeof type}. Argument must be a string. ""`);
+		}
+		
+		if (typeof props !== 'object' && typeof props !== 'undefined') {
+			throw new Error(`Invalid value of the argument "props" in createElement()! Argument must be an object.`);
+		}
+		
 		const element = document.createElement(type);
-
+		
 		for (let key in props) {
 		  switch (key) {
 			case 'style':
@@ -19,7 +29,7 @@ const React = {
 			  element[key] = props[key];
 		  }
 		}
-
+		
 		if (children) {
 			switch (typeof children) {
 				case 'string':
@@ -33,22 +43,30 @@ const React = {
 							if (typeof child == 'string') {
 								let textNode = document.createTextNode(child);
 								element.appendChild(textNode);
-							} else {
+							} else if (child.nodeType){
 								element.appendChild(child);
 							}
 						});
+					} else if (children.nodeType){
+						element.appendChild(children);						
 					} else {
-						element.appendChild(children);
+						throw new Error(`Invalid value of the argument "children" in createElement()! Argument "children" must be an array or Node element.`);
 					} 
 					break;
 			}
 		}
-		console.log(element.nodeType)
 		return element;
 	  },
 
 	  render(element, parentElement) {
-		parentElement.innerHTML = element.outerHTML;
+		if (!parentElement) throw new Error(`Invalid value of the argument "parentElement" in render()! "parentElement" is null`);
+		if (!parentElement || !parentElement.nodeType) throw new Error(`Invalid value of the argument "parentElement" in render()! "parentElement" must be a Node element `);
+		
+		if (typeof element == 'string') {
+			parentElement.innerHTML = element;
+		} else if (element.nodeType) {
+			parentElement.innerHTML = element.outerHTML;
+		}
 	  }
 	}
 
@@ -60,7 +78,8 @@ const React = {
 	    React.createElement('div', { textContent: 'Text content' })
 	  ]);
 
-	React.render(
-	  app,
-	  document.getElementById('root'),
-	);
+React.render(
+	app,
+	document.getElementById('root'),
+);
+
