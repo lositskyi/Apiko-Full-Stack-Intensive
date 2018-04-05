@@ -71,7 +71,7 @@ class PostList extends Component {
 	filterPosts() {
 		console.log('filter posts')
 		const {posts, value, itemCounter} = this.state;
-		const regExp = new RegExp(value, 'g');
+		const regExp = new RegExp(value, 'i');
 
 		return posts.filter(post => regExp.test(post.title)).slice(0, itemCounter);
 	}
