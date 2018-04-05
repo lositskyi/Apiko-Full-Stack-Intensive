@@ -1,0 +1,26 @@
+.Post-item {
+	display: block;
+	border: 1px solid #ccc;
+	box-shadow: 3px 3px 3px #ccc;
+	margin: 10px;
+	padding: 5px;
+}
+
+
+
+.Button {
+	display: block;
+	width: 120px;
+	height: 40px;
+	font-size: 20px;
+	margin: 10px auto;
+	border: 0;
+	box-shadow: 3px 3px 3px #ccc;
+	background-color: #f4f4f4;
+	transition: 0.5s;
+	cursor: pointer;
+}
+
+.Button:hover {
+	background-color: #ccc;
+}
