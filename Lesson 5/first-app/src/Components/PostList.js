@@ -77,10 +77,12 @@ class PostList extends Component {
 	}
 
 	onClick() {
-		const {itemCounter} = this.state;
-		this.setState({
-			itemCounter: itemCounter + 10
-		});
+		const {itemCounter, posts} = this.state;
+		if (itemCounter < posts.length) {
+			this.setState({
+				itemCounter: itemCounter + 10
+			});
+		}
 	}
 
 	render () {
