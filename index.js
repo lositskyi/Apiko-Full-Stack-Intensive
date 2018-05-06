@@ -1,6 +1,7 @@
 const { config } = require('dotenv');
 const getLocation = require('./getLocation');
 const getWeather = require('./getWeather');
+const writeFile = require('./writeFile');
 
 config();
 
@@ -11,6 +12,8 @@ getLocation(GOOGLE_API_KEY, CITY)
 	.then(location => getWeather(DARK_SKY_API_KEY, location))
 	.then(weather => {
 		for (let key in weather) {
-			console.log(`${key}: ${weather[key]}`)
+			console.log(`${key}: ${weather[key]}`);
+			writeFile(`${key}: ${weather[key]}`) 
 		}
+		writeFile('\n');
 	})

@@ -5,8 +5,13 @@ const getLocation = (key, city) => {
 	return fetch(`${locationURL}?address=${city}&key=${key}`)
 		.then(response => response.json())
 		.then(data => {
-			console.log(`Weather in ${data.results[0].formatted_address}`);
-			return data.results[0].geometry.location;
+			const location = {
+				'address': data.results[0].formatted_address,
+				'lat': data.results[0].geometry.location.lat,
+				'lng': data.results[0].geometry.location.lng,
+			}
+			
+			return location;
 		})
 		.catch(error => console.error(`ERROR ${error}`));
 };

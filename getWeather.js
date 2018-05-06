@@ -7,6 +7,7 @@ const getWeather = (key, location) => {
 		.then(data => {
 			const weatherData = data.currently;
 			const weather = {
+					'address': 	location.address,
 					'date': new Date().toLocaleString(),
 					'temperature': ((Number(weatherData.temperature) - 32) * (5 / 9)).toFixed(1),
 					'precipProbability': weatherData.precipProbability,
