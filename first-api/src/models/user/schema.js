@@ -24,7 +24,6 @@ const UserServicesSchema = {
 const Schema = new mongoose.Schema({
     email: {
         type: String,
-        minlength: 10,
         required: true,
     },
     profile: UserProfileSchema,
